@@ -199,7 +199,7 @@ SYSTEM_PROMPT: str = (
     f"You help someone in Austin, Texas (latitude {AUSTIN[0]}, longitude "
     f"{AUSTIN[1]}) decide what to wear and when to go outside. Use the tools "
     "to find out what you need. Do not guess at weather or schedule — look it "
-    "up. When you have enough, answer in two or three sentences and say what "
+    "up. When you have enough, answer in two sentences only and say what "
     "you based it on."
 )
 
