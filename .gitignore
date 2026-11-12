@@ -259,10 +259,4 @@ checkpoints/
 *.ann
 *.usearch
 
-# Generated chunk + vector index for the City of Austin docs RAG example.
-#   Rebuild with: python prep.py && python embed.py --build
-cityOfAustinPublicDocsRAG/index/
 
-# Source council-minutes PDFs for the City of Austin docs RAG example (large, public;
-#   download them again rather than committing them).
-cityOfAustinPublicDocsRAG/coaDocs/
