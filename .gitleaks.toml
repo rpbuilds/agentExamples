@@ -1,0 +1,33 @@
+# gitleaks configuration for this repo.
+#
+# Keeps all ~200 built-in rules and adds the ones that matter here. Both examples
+# in this repo call the Anthropic API, and stock gitleaks 8.30 has no rule for an
+# Anthropic key, so a leaked one would sail through without this file.
+#
+# This file IS tracked by git, unlike the hook in .git/hooks/, so the rules travel
+# to every clone even though the hook has to be reinstalled per clone.
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "anthropic-api-key"
+description = "Anthropic API key"
+# Real keys look like sk-ant-api03-<~95 chars>AA. Matched generously on the
+# distinctive prefix: a missed key is far worse than a false positive, and
+# nothing else in this codebase starts with sk-ant-.
+regex = '''sk-ant-[A-Za-z0-9_\-]{24,}'''
+keywords = ["sk-ant-"]
+
+[[rules]]
+id = "anthropic-admin-key"
+description = "Anthropic admin API key"
+regex = '''sk-ant-admin[A-Za-z0-9_\-]{10,}'''
+keywords = ["sk-ant-admin"]
+
+[rules.allowlist]
+# Placeholders in docs and README examples are not leaks.
+regexes = [
+    '''sk-ant-(api03-)?(x{4,}|X{4,}|\.{3,})''',
+    '''sk-ant-.*(REPLACE|PLACEHOLDER|YOUR_KEY|EXAMPLE|FAKE|DUMMY)''',
+]

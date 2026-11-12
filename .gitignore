@@ -218,3 +218,51 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ---------------------------------------------------------------------------
+# ML models, weights, and caches
+#   Model weights are downloaded at runtime, never committed. By default the
+#   Hugging Face cache lives OUTSIDE the repo in ~/.cache/huggingface (~300 MB
+#   already, for bge-small alone). These entries are the safety net for when
+#   HF_HOME, HF_HUB_CACHE, TRANSFORMERS_CACHE, or SENTENCE_TRANSFORMERS_HOME
+#   is pointed at a folder inside the repo instead.
+# ---------------------------------------------------------------------------
+.cache/
+.huggingface/
+huggingface/
+hf_cache/
+.sentence_transformers/
+sentence_transformers_cache/
+.torch/
+.keras/
+models/
+checkpoints/
+
+# Model weight and checkpoint files, in any directory
+*.safetensors
+*.onnx
+*.gguf
+*.ggml
+*.ckpt
+*.pt
+*.pth
+*.h5
+*.msgpack
+*.tflite
+*.pb
+*.bin
+
+# Generated vector indexes and embedding artifacts
+*.npy
+*.npz
+*.faiss
+*.ann
+*.usearch
+
+# Generated chunk + vector index for the City of Austin docs RAG example.
+#   Rebuild with: python prep.py && python embed.py --build
+cityOfAustinPublicDocsRAG/index/
+
+# Source council-minutes PDFs for the City of Austin docs RAG example (large, public;
+#   download them again rather than committing them).
+cityOfAustinPublicDocsRAG/coaDocs/
